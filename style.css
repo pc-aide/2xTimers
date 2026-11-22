@@ -148,12 +148,16 @@ input:focus-visible {
 }
 
 .timer-controls {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: 86px 140px 140px;
+  column-gap: 10px;
+  row-gap: 8px;
+  align-items: start;
 }
 
 .duration-field {
+  grid-column: 2;
+  grid-row: 1;
   display: flex;
   width: 140px;
   max-width: 100%;
@@ -206,6 +210,8 @@ input:focus-visible {
   margin: 0;
   color: #777f91;
   font-size: 10px;
+  grid-column: 1 / -1;
+  grid-row: 2;
 }
 
 .duration-field:has(input.is-invalid) + .field-hint {
@@ -219,11 +225,13 @@ input:focus-visible {
   align-items: center;
   gap: 9px;
   width: fit-content;
-  margin: 2px 0 15px;
+  margin: 10px 0 0;
   color: #b7bdca;
   font-size: 11px;
   cursor: pointer;
   user-select: none;
+  grid-column: 3;
+  grid-row: 1;
 }
 
 .checkbox-row input {
@@ -264,14 +272,18 @@ input:focus-visible {
 }
 
 .button-row {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  grid-column: 1;
+  grid-row: 1;
 }
 
 .button {
   display: inline-flex;
-  width: 100%;
+  width: 40px;
+  flex: 0 0 40px;
   height: 40px;
   min-height: 40px;
   align-items: center;
@@ -412,28 +424,30 @@ input:focus-visible {
 
   .timer-controls {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 12px;
+    grid-template-columns: 86px 140px 140px;
+    column-gap: 10px;
   }
 
-  .duration-field,
+  .duration-field {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
   .field-hint {
     grid-column: 1 / -1;
-  }
-
-  .field-hint {
-    margin-bottom: 0;
+    grid-row: 2;
   }
 
   .checkbox-row {
-    align-self: center;
-    margin: 5px 0;
-    font-size: 10px;
+    grid-column: 3;
+    grid-row: 1;
+    margin: 10px 0 0;
   }
 
   .button-row {
-    grid-column: 1 / -1;
-    margin-top: 10px;
+    grid-column: 1;
+    grid-row: 1;
+    margin-top: 0;
   }
 }
 
