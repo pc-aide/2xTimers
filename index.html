@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#10131c" />
+    <meta name="description" content="Two independent countdown timers, simple and elegant." />
+    <title>Double Timer</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="timers" aria-label="Your timers">
+        <article class="timer-card" data-timer="1" aria-label="Timer 1">
+          <div class="timer-content">
+            <div class="time-panel">
+              <p class="time-display" data-display aria-live="off">00:00</p>
+              <div class="cycle-count" title="Number of completed cycles" aria-label="Number of completed cycles: 0"><span class="cycle-symbol">N:</span><span data-cycles>0</span></div>
+            </div>
+
+            <div class="timer-controls">
+              <div class="duration-field">
+                <input id="duration-1" data-duration type="text" inputmode="decimal" placeholder="1:40" autocomplete="off" aria-label="Cycle duration" title="Cycle duration" aria-describedby="duration-hint-1" />
+                <span>min : sec</span>
+              </div>
+              <p class="field-hint" id="duration-hint-1"></p>
+              <label class="checkbox-row" title="Pause between cycles">
+                <input data-pause-between type="checkbox" aria-label="Pause between cycles" title="Pause between cycles" />
+                <span class="custom-checkbox" aria-hidden="true"></span>
+              </label>
+              <div class="button-row">
+                <button class="button button-primary" data-toggle type="button" aria-label="Start timer" title="Start timer">
+                  <span class="play-icon" aria-hidden="true"></span>
+                  <span class="play-number" aria-hidden="true">1</span>
+                </button>
+                <button class="button button-secondary" data-reset type="button" aria-label="Reset timer one" title="Reset timer one">
+                  <span class="reset-icon" aria-hidden="true">↺</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="timer-card timer-card-accent" data-timer="2" aria-label="Timer 2">
+          <div class="timer-content">
+            <div class="time-panel">
+              <p class="time-display" data-display aria-live="off">00:00</p>
+              <div class="cycle-count" title="Number of completed cycles" aria-label="Number of completed cycles: 0"><span class="cycle-symbol">N:</span><span data-cycles>0</span></div>
+            </div>
+
+            <div class="timer-controls">
+              <div class="duration-field">
+                <input id="duration-2" data-duration type="text" inputmode="decimal" placeholder="1:40" autocomplete="off" aria-label="Cycle duration" title="Cycle duration" aria-describedby="duration-hint-2" />
+                <span>min : sec</span>
+              </div>
+              <p class="field-hint" id="duration-hint-2"></p>
+              <label class="checkbox-row" title="Pause between cycles">
+                <input data-pause-between type="checkbox" aria-label="Pause between cycles" title="Pause between cycles" />
+                <span class="custom-checkbox" aria-hidden="true"></span>
+              </label>
+              <div class="button-row">
+                <button class="button button-primary" data-toggle type="button" aria-label="Start timer" title="Start timer">
+                  <span class="play-icon" aria-hidden="true"></span>
+                  <span class="play-number" aria-hidden="true">2</span>
+                </button>
+                <button class="button button-secondary" data-reset type="button" aria-label="Reset timer two" title="Reset timer two">
+                  <span class="reset-icon" aria-hidden="true">↺</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <footer class="page-footer"><span class="footer-dot"></span>v0.1 (November 22, 2026)</footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,448 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  background: #10131c;
+  color: #f5f6fb;
+  --muted: #8f96a8;
+  --line: rgba(255, 255, 255, 0.09);
+  --lime: #c3f36b;
+  --violet: #ad91ff;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 0;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 18% 0%, rgba(119, 90, 211, 0.16), transparent 34rem),
+    radial-gradient(ellipse at 92% 38%, rgba(83, 125, 68, 0.1), transparent 30rem),
+    #10131c;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 3px;
+}
+
+.page-shell {
+  width: min(100% - 48px, 1000px);
+  margin: 0 auto;
+  padding: 26px 0 30px;
+}
+
+.timers {
+  display: grid;
+  gap: 18px;
+}
+
+.timer-card {
+  position: relative;
+  overflow: hidden;
+  padding: 25px 30px 22px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: linear-gradient(115deg, rgba(28, 33, 46, 0.97), rgba(24, 28, 39, 0.94));
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+}
+
+.timer-card::after {
+  position: absolute;
+  top: -110px;
+  left: 21%;
+  width: 280px;
+  height: 180px;
+  border-radius: 50%;
+  background: rgba(173, 145, 255, 0.055);
+  content: "";
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.timer-card-accent::after {
+  background: rgba(195, 243, 107, 0.045);
+}
+
+.timer-content {
+  position: relative;
+  z-index: 1;
+}
+
+.timer-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  align-items: center;
+  gap: 40px;
+  padding: 16px 0 18px;
+}
+
+.time-panel {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+}
+
+.time-display {
+  margin: 0;
+  color: #f5f6fb;
+  min-width: 0;
+  font-size: clamp(184px, 20vw, 232px);
+  font-weight: 550;
+  line-height: 1;
+  letter-spacing: -0.075em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-shadow: 0 8px 34px rgba(173, 145, 255, 0.12);
+}
+
+.time-display.is-long {
+  font-size: clamp(116px, 12vw, 148px);
+}
+
+.timer-card-accent .time-display {
+  text-shadow: 0 8px 34px rgba(195, 243, 107, 0.1);
+}
+
+.cycle-count {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 5px;
+  margin: 0;
+  color: #c3c7d1;
+  font-size: 56px;
+  font-variant-numeric: tabular-nums;
+}
+
+.cycle-symbol {
+  color: var(--muted);
+  font-weight: 650;
+}
+
+.cycle-count [data-cycles] {
+  color: #e8eaf0;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.footer-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--violet);
+}
+
+.timer-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.duration-field {
+  display: flex;
+  width: 140px;
+  max-width: 100%;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  background: rgba(9, 11, 17, 0.35);
+  transition: border-color 160ms ease, opacity 160ms ease;
+}
+
+.duration-field:focus-within {
+  border-color: rgba(195, 243, 107, 0.55);
+}
+
+.duration-field input {
+  width: 100%;
+  min-width: 0;
+  padding: 11px 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #f5f6fb;
+  font-size: 15px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.duration-field input::placeholder {
+  color: #737b8d;
+}
+
+.duration-field input:disabled {
+  opacity: 0.55;
+}
+
+.duration-field span {
+  flex-shrink: 0;
+  color: #777f91;
+  font-size: 10px;
+}
+
+.duration-field:has(input.is-invalid) {
+  border-color: #ff7c89;
+}
+
+.field-hint {
+  min-height: 0;
+  margin: 0;
+  color: #777f91;
+  font-size: 10px;
+}
+
+.duration-field:has(input.is-invalid) + .field-hint {
+  margin: 5px 0 8px;
+  color: #ff929c;
+}
+
+.checkbox-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: fit-content;
+  margin: 2px 0 15px;
+  color: #b7bdca;
+  font-size: 11px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-row input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.custom-checkbox {
+  display: grid;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  background: rgba(9, 11, 17, 0.3);
+}
+
+.checkbox-row input:checked + .custom-checkbox {
+  border-color: var(--lime);
+  background: var(--lime);
+}
+
+.checkbox-row input:checked + .custom-checkbox::after {
+  width: 7px;
+  height: 4px;
+  border-bottom: 1.5px solid #15191f;
+  border-left: 1.5px solid #15191f;
+  content: "";
+  transform: translateY(-1px) rotate(-45deg);
+}
+
+.checkbox-row input:focus-visible + .custom-checkbox {
+  outline: 2px solid var(--lime);
+  outline-offset: 3px;
+}
+
+.button-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.button {
+  display: inline-flex;
+  width: 100%;
+  height: 40px;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button-primary {
+  background: var(--lime);
+  color: #1b2114;
+}
+
+.button-primary:hover {
+  background: #d0fb83;
+}
+
+.button-primary.is-pausing {
+  background: #d7d9e2;
+  color: #20232c;
+}
+
+.button-secondary {
+  border-color: rgba(255, 255, 255, 0.11);
+  background: rgba(255, 255, 255, 0.035);
+  color: #c3c7d1;
+}
+
+.button-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.23);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.play-icon {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 7px solid currentColor;
+}
+
+.play-number {
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1;
+}
+
+.is-pausing .play-icon {
+  width: 8px;
+  height: 10px;
+  border: 0;
+  border-right: 2.5px solid currentColor;
+  border-left: 2.5px solid currentColor;
+}
+
+.reset-icon {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.page-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding-top: 23px;
+  color: #777f91;
+  font-size: 11px;
+}
+
+.footer-dot {
+  width: 5px;
+  height: 5px;
+  background: #737b8d;
+}
+
+@media (max-width: 920px) {
+  .timer-content {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .time-display {
+    font-size: clamp(180px, 26vw, 216px);
+  }
+
+  .time-display.is-long {
+    font-size: clamp(88px, 12vw, 112px);
+  }
+}
+
+@media (max-width: 700px) {
+  .page-shell {
+    width: min(100% - 30px, 520px);
+    padding-top: 30px;
+  }
+
+  .timer-card {
+    padding: 20px 20px 17px;
+  }
+}
+
+@media (max-width: 520px) {
+  .page-shell {
+    padding-top: 18px;
+  }
+
+  .timer-card {
+    padding: 17px 16px 15px;
+    border-radius: 18px;
+  }
+
+  .timer-content {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 14px 0 15px;
+  }
+
+  .time-display {
+    font-size: clamp(96px, 31vw, 132px);
+    letter-spacing: -0.12em;
+  }
+
+  .time-display.is-long {
+    font-size: clamp(58px, 18vw, 78px);
+  }
+
+  .timer-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 12px;
+  }
+
+  .duration-field,
+  .field-hint {
+    grid-column: 1 / -1;
+  }
+
+  .field-hint {
+    margin-bottom: 0;
+  }
+
+  .checkbox-row {
+    align-self: center;
+    margin: 5px 0;
+    font-size: 10px;
+  }
+
+  .button-row {
+    grid-column: 1 / -1;
+    margin-top: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
